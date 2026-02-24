@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RainAI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🌧️ RainAI</div>
+  <nav>
+  <a href="index.html" class="active">Dashboard</a>
+  <a href="forecast.html">Forecast</a>
+  <a href="journey.html">Journey</a>
+</nav>
+  <div class="profile">Chennai, Tamil Nadu • Mist & Rain</div>
+</header>
+<h2 class="prediction-result">Loading...</h2>
+<main class="container">
+  
+  <!-- LEFT BIG WEATHER CARD -->
+  <section class="weather-card">
+    <div class="weather-header">
+      <span class="live-badge">Live Weather</span>
+      <span>Chennai, Tamil Nadu</span>
+    </div>
+
+    <div class="temp-section">
+      <h1>32°C</h1>
+      <p>Humid & Partly Cloudy • Feels like 38°</p>
+    </div>
+
+    <div class="weather-stats">
+      <div>
+        <span>Wind</span>
+        <strong>18 km/h SE</strong>
+      </div>
+      <div>
+        <span>Humidity</span>
+        <strong>74%</strong>
+      </div>
+      <div>
+        <span>UV Index</span>
+        <strong>Very High (9)</strong>
+      </div>
+    </div>
+    <a href="forecast.html" class="forecast-btn">
+      View Full Forecast →
+    </a>
+  </section>
+
+  <!-- RIGHT SIDE PANEL -->
+  <section class="side-panel">
+
+    <div class="precipitation-card">
+      <h3>Sun Exposure</h3>
+      <div class="circle">
+        <span>38°</span>
+        <small>Intensity</small>
+      </div>
+      <p>Peak around 2PM</p>
+    </div>
+
+    <div class="insight-card">
+      <h3>AI Rain Insights</h3>
+      <div class="insight">
+        <strong>Commute Update</strong>
+        <p>Expect normal traffic flow with no weather-related delays.</p>
+      </div>
+      <div class="insight">
+        <strong>Puddle Advisory</strong>
+        <p>Dry road conditions across the city. No accumulation observed.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+<footer>
+    © 2026 RainAI: AI-Driven Weather Prediction System with XGBoost
+</footer>
+</body>
+</html>

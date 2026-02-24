@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RainAI</title>
+    <link rel="stylesheet" href="journey.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">🌧️ RainAI</div>
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="forecast.html">Forecast</a>
+        <a class="active" href="#">Journey</a>
+    </nav>
+    <div class="profile">Chennai, Tamil Nadu<br><span>Mist & Rain</span></div>
+</header>
+
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-left">
+        <div class="badge">Temporal Map • Updated 3 mins ago</div>
+        <h1>The Rain <span>Journey</span></h1>
+        <p>
+            Follow the flow of heat across Chennai today.
+Scrub to observe temperature shifts through the day.
+        </p>
+    </div>
+
+    <div class="hero-stats">
+        <div class="stat-card">
+            <p>Current Temperature</p>
+            <h2>33°C</h2>
+        </div>
+        <div class="stat-card green">
+            <p>Wind Speed</p>
+            <h2>18 km/h</h2>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+
+    <div class="accumulated">
+        <div class="bar"></div>
+        <p>HEAT INDEX</p>
+        <h3>37°C</h3>
+    </div>
+
+    <div class="timeline">
+        <div class="line"></div>
+        <div class="indicator"></div>
+
+        <div class="timeline-card">
+            <div class="time-row">
+                <h3>12:00</h3>
+                <span class="humidity">72% Humidity</span>
+            </div>
+
+            <p class="observation">CONDITION</p>
+            <h4>"Hot & Partly Cloudy"</h4>
+
+            <div class="details">
+                <span>SE 18km/h</span>
+                <span>Clear Visibility</span>
+            </div>
+        </div>
+
+        <div class="rain-blob"></div>
+
+    </div>
+
+</section>
+
+
+<!-- Bottom Section -->
+<section class="bottom-section">
+
+    <div class="insight-card">
+        <h3>AI Rain Insight</h3>
+        <p>
+            The atmospheric profile indicates stable and dry conditions through 6:00 PM. If you're planning an evening commute, visibility will remain clear compared to the warmer mid-day period. No surface water accumulation is expected across major routes.
+        </p>
+
+        <div class="links">
+            <a href="Rainfall.csv" target="_blank">View Raw Data →</a>
+        </div>
+    </div>
+
+    <div class="sensors">
+        <h4>LIVE SENSORS</h4>
+
+        <!-- <div class="sensor">
+            <span>Humidity Level</span>
+            <strong>72%</strong>
+        </div> -->
+
+        <div class="sensor">
+            <span>Wind Activity</span>
+            <strong>Light</strong>
+        </div>
+
+        <div class="sensor">
+            <span>UV Index</span>
+            <strong>High</strong>
+        </div>
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 RainAI: AI-Driven Weather Prediction System with XGBoost
+</footer>
+
+</body>
+</html>

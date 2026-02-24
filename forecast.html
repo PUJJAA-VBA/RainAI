@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RainAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🌧️ RainAI</div>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="forecast.html" class="active">Forecast</a>
+    <a href="journey.html">Journey</a>
+  </nav>
+  <div class="profile">Chennai, Tamil Nadu • Mist & Rain</div>
+</header>
+
+<main class="forecast-container">
+
+  <!-- HERO BLUR CARD
+  <section class="mist-card">
+    <div class="mist-overlay">
+      <div class="mist-content">
+        <div class="mist-icon"></div>
+        <div class="weather-image">
+    <img src="rain.jpg" alt="Rain Icon">
+</div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- GRID SECTION -->
+  <section class="forecast-grid">
+
+    <!-- LEFT CHART CARD -->
+    <div class="chart-card">
+      <div class="card-header">
+        <div>
+          <h3>Hourly Intensity Trend</h3>
+          <small>Precipitation and Thermal shifts</small>
+        </div>
+        <!-- <div class="toggle-buttons">
+          <button class="toggle active">12 Hours</button>
+          <button class="toggle">24 Hours</button>
+        </div> -->
+      </div>
+
+      <div class="chart-placeholder">
+        <div class="blue-line"></div>
+        <div class="green-line"></div>
+      </div>
+
+      <div class="legend">
+        <span class="legend-blue"></span> Temperature (°C)
+        <span class="legend-green"></span> Rain (mm)
+      </div>
+    </div>
+
+    <!-- RIGHT AI CARD -->
+    <div class="assistant-card">
+      <h3>AI Commute Assistant</h3>
+
+      <div class="assist-row">
+        <span>🚗 Driving</span>
+        <span>No Weather Delays</span>
+      </div>
+
+      <div class="assist-row red">
+        <span>🚴 Biking</span>
+        <span>Elevated Heat Exposure</span>
+      </div>
+
+      <div class="assist-row">
+        <span>🚶 Walking</span>
+        <span>Moderate Heat Conditions</span>
+      </div>
+
+      <div class="assist-tip">
+        Tip: Temperatures remain high during the afternoon. Stay hydrated and avoid prolonged sun exposure.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- WEEKLY OUTLOOK -->
+  <section class="weekly-section">
+    <h3>Weekly Outlook</h3>
+
+    <div class="week-card">
+      <span>Monday</span>
+      <div class="bar"><div style="width:85%"></div></div>
+      <span>34°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Tuesday</span>
+      <div class="bar"><div style="width:40%"></div></div>
+      <span>33°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Wednesday</span>
+      <div class="bar"><div style="width:10%"></div></div>
+      <span>33°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Thursday</span>
+      <div class="bar"><div style="width:5%"></div></div>
+      <span>34°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Friday</span>
+      <div class="bar"><div style="width:90%"></div></div>
+      <span>32°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Saturday</span>
+      <div class="bar"><div style="width:90%"></div></div>
+      <span>35°</span>
+    </div>
+
+    <div class="week-card">
+      <span>Sunday</span>
+      <div class="bar"><div style="width:90%"></div></div>
+      <span>34°</span>
+    </div>
+  </section>
+
+</main>
+<footer>
+    © 2026 RainAI: AI-Driven Weather Prediction System with XGBoost
+</footer>
+</body>
+</html>
