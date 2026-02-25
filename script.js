@@ -45,7 +45,6 @@ async function getPrediction() {
 
 function getPrediction() {
     const city = document.getElementById("cityInput").value;
-
     fetch(`http://127.0.0.1:5000/predict/${city}`)
         .then(response => response.json())
         .then(data => {
