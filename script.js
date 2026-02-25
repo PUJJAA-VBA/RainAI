@@ -16,47 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 15);
 });
 
-async function getPrediction() {
-    const response = await fetch("http://127.0.0.1:5000/predict", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            pressure: 1012,
-            maxtemp: 34,
-            temparature: 30,
-            mintemp: 26,
-            dewpoint: 24,
-            humidity: 75,
-            cloud: 40,
-            sunshine: 8,
-            windspeed: 18
-        })
+function getPrediction() {
+
+    const city = document.getElementById("cityInput").value;
+
+    fetch(`http://127.0.0.1:5000/predict/${city}`)
+    .then(response => response.json())
+    .then(data => {
+
+        console.log(data);
+
+        if(data.prediction){
+            document.getElementById("result").innerText =
+                data.prediction;
+        }
+        else{
+            document.getElementById("result").innerText =
+                "Prediction failed";
+        }
+
+    })
+    .catch(err => {
+        console.log(err);
+        document.getElementById("result").innerText =
+            "Server error";
     });
 
-    const data = await response.json();
-
-    console.log(data.prediction);
-
-    // Example: update some element in UI
-    document.querySelector(".prediction-result").innerText = data.prediction;
 }
-
-function getPrediction() {
-    const city = document.getElementById("cityInput").value;
-    fetch(`http://127.0.0.1:5000/predict/${city}`, {
- method: "GET"
-})
-.then(res => res.json())
-.then(data => {
- document.getElementById("result").innerText = data.prediction;
-});
-    // fetch(`http://127.0.0.1:5000/predict/${city}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         document.getElementById("result").innerText = data.prediction;
-    //     });
-}
-
-getPrediction();
