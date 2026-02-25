@@ -18,9 +18,22 @@
 </nav>
   <div class="profile">Chennai, Tamil Nadu • Mist & Rain</div>
 </header>
-<h2 class="prediction-result">Loading...</h2>
+<h2 class="prediction-result"></h2>
 <main class="container">
-  
+  <div class="predict-box">
+
+  <div class="predict-box">
+  <input type="text" id="cityInput" placeholder="City Name"/>
+
+  <button onclick="getPrediction()">
+    🌧️ Predict Rain
+  </button>
+
+  <h2 id="result">
+    Prediction Result
+  </h2>
+</div>
+</div>
   <!-- LEFT BIG WEATHER CARD -->
   <section class="weather-card">
     <div class="weather-header">
@@ -58,7 +71,7 @@
     <div class="precipitation-card">
       <h3>Sun Exposure</h3>
       <div class="circle">
-        <span>38°</span>
+        <span>84%</span>
         <small>Intensity</small>
       </div>
       <p>Peak around 2PM</p>

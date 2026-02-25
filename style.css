@@ -364,3 +364,76 @@ footer {
 .forecast-btn:hover {
   background: #2f6edc;
 }
+
+/* ======================= */
+/* Prediction Display Card */
+/* ======================= */
+
+.predict-box{
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+/* Input Field */
+
+.predict-box input{
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.predict-box input:focus{
+  border-color: #3a86ff;
+}
+
+/* Predict Button */
+
+.predict-box button{
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg,#2b8cff,#3a86ff);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.predict-box button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(3, 23, 47, 0.3);
+  
+}
+
+/* Prediction Result Text */
+
+#result{
+  font-size: 18px;
+  font-weight: 00;
+  text-align: center;
+  margin-top: 15px;
+
+  background: linear-gradient(135deg,#2b8cff,#3a86ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Premium AI Glow + Soft Outline */
+  text-shadow:
+    0 0 5px rgba(0,0,0,0.25),
+    0 0 10px rgba(43,140,255,0.35),
+    /* 0 0 15px rgba(58,199,122,0.25); */
+}
