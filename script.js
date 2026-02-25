@@ -45,11 +45,18 @@ async function getPrediction() {
 
 function getPrediction() {
     const city = document.getElementById("cityInput").value;
-    fetch(`http://127.0.0.1:5000/predict/${city}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("result").innerText = data.prediction;
-        });
+    fetch(`http://127.0.0.1:5000/predict/${city}`, {
+ method: "GET"
+})
+.then(res => res.json())
+.then(data => {
+ document.getElementById("result").innerText = data.prediction;
+});
+    // fetch(`http://127.0.0.1:5000/predict/${city}`)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         document.getElementById("result").innerText = data.prediction;
+    //     });
 }
 
 getPrediction();
