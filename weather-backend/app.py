@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 import numpy as np
+import requests
+
+API_KEY = "7cb98fede82fd6e2b308e6ed97a7f887"
 
 app = Flask(__name__)
 CORS(app)
@@ -38,6 +41,27 @@ def predict():
     return jsonify({
         "prediction": result
     })
+
+@app.route('/get-weather/<city>')
+def get_weather(city):
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    
+    response = requests.get(url)
+    data = response.json()
+
+    weather_data = {
+        "pressure": data["main"]["pressure"],
+        "maxtemp": data["main"]["temp_max"],
+        "temparature": data["main"]["temp"],
+        "mintemp": data["main"]["temp_min"],
+        "humidity": data["main"]["humidity"],
+        "cloud": data["clouds"]["all"],
+        "windspeed": data["wind"]["speed"]
+    }
+
+    return weather_data
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
