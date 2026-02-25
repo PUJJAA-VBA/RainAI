@@ -3,65 +3,120 @@ from flask_cors import CORS
 import joblib
 import numpy as np
 import requests
+import os
+from dotenv import load_dotenv
 
-API_KEY = "7cb98fede82fd6e2b308e6ed97a7f887"
+# Load environment variables
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 CORS(app)
 
-# Load trained model
-model = joblib.load("model.pkl")
+# Load ML model safely
+try:
+    model = joblib.load("model.pkl")
+except:
+    print("Model loading failed. Check model.pkl file.")
+    model = None
 
+
+# ==========================
+# Prediction API
+# ==========================
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = request.json
 
-    # Extract values from frontend
-    pressure = float(data["pressure"])
-    maxtemp = float(data["maxtemp"])
-    temparature = float(data["temparature"])
-    mintemp = float(data["mintemp"])
-    dewpoint = float(data["dewpoint"])
-    humidity = float(data["humidity"])
-    cloud = float(data["cloud"])
-    sunshine = float(data["sunshine"])
-    windspeed = float(data["windspeed"])
+    if model is None:
+        return jsonify({"error": "Model not loaded"}), 500
 
-    features = np.array([[pressure, maxtemp, temparature,
-                          mintemp, dewpoint, humidity,
-                          cloud, sunshine, windspeed]])
+    try:
+        data = request.json
 
-    prediction = model.predict(features)[0]
+        pressure = float(data["pressure"])
+        maxtemp = float(data["maxtemp"])
+        temparature = float(data["temparature"])
+        mintemp = float(data["mintemp"])
+        dewpoint = float(data["dewpoint"])
+        humidity = float(data["humidity"])
+        cloud = float(data["cloud"])
+        sunshine = float(data["sunshine"])
+        windspeed = float(data["windspeed"])
 
-    if prediction == 1:
-        result = "Rain Expected"
-    else:
-        result = "No Rain"
+        features = np.array([[
+            pressure,
+            maxtemp,
+            temparature,
+            mintemp,
+            dewpoint,
+            humidity,
+            cloud,
+            sunshine,
+            windspeed
+        ]])
 
-    return jsonify({
-        "prediction": result
-    })
+        prediction = model.predict(features)[0]
 
-@app.route('/get-weather/<city>')
+        result_map = {
+            1: "Rain Expected",
+            0: "No Rain"
+        }
+
+        return jsonify({
+            "prediction": result_map.get(prediction, "Unknown")
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+
+# ==========================
+# Live Weather API Integration
+# ==========================
+@app.route("/get-weather/<city>")
 def get_weather(city):
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-    
-    response = requests.get(url)
-    data = response.json()
 
-    weather_data = {
-        "pressure": data["main"]["pressure"],
-        "maxtemp": data["main"]["temp_max"],
-        "temparature": data["main"]["temp"],
-        "mintemp": data["main"]["temp_min"],
-        "humidity": data["main"]["humidity"],
-        "cloud": data["clouds"]["all"],
-        "windspeed": data["wind"]["speed"]
-    }
+    if API_KEY is None:
+        return jsonify({"error": "API key missing"}), 500
 
-    return weather_data
+    try:
+        url = f"https://api.openweathermap.org/data/2.5/weather"
+
+        params = {
+            "q": city,
+            "appid": API_KEY,
+            "units": "metric"
+        }
+
+        response = requests.get(url, params=params, timeout=2)
+
+        if response.status_code != 200:
+            return jsonify({"error": "City not found or API error"}), 404
+
+        data = response.json()
+
+        weather_data = {
+            "pressure": data["main"]["pressure"],
+            "maxtemp": data["main"]["temp_max"],
+            "temparature": data["main"]["temp"],
+            "mintemp": data["main"]["temp_min"],
+            "humidity": data["main"]["humidity"],
+            "cloud": data["clouds"]["all"],
+            "windspeed": data["wind"]["speed"]
+        }
+
+        return jsonify(weather_data)
+
+    except requests.exceptions.Timeout:
+        return jsonify({"error": "Weather API timeout"}), 504
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
-
+# ==========================
+# Run Server
+# ==========================
 if __name__ == "__main__":
     app.run(debug=True)
